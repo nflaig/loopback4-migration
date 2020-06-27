@@ -1,0 +1,24 @@
+{
+  "cache": false,
+  "extension": [
+    ".ts"
+  ],
+  "exclude": [
+    "**/*.d.ts",
+    "coverage/**",
+    "packages/*/test/**",
+    "test/**",
+    "test{,-*}.ts",
+    "**/*{.,-}{test,spec}.ts",
+    "**/__tests__/**",
+    "**/tests/**",
+    "**/node_modules/**",
+    "*.js"
+  ],
+  "require": ["ts-node/register"],
+  "all": true,
+  "reporter": [
+    "text",
+    "html"
+  ]
+}

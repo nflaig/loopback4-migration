@@ -1,0 +1,10 @@
+{
+  "exit": true,
+  "recursive": true,
+  "colors": true,
+  "require": [
+    "source-map-support/register",
+    "ts-node/register",
+    "src/__tests__/mocha.env.ts"
+  ]
+}

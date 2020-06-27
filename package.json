@@ -1,0 +1,88 @@
+{
+  "name": "loopback4-migration",
+  "version": "1.0.0",
+  "description": "LoopBack 4 Migration Component",
+  "keywords": [
+    "loopback-4",
+    "loopback-extension",
+    "migration",
+    "database",
+    "upgrade",
+    "downgrade"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "lb-tsc --copy-resources",
+    "build:watch": "lb-tsc --watch",
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run clean && npm run build",
+    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js",
+    "test:ci": "lb-nyc -r lcov -r text npm run test:dev",
+    "test:coverage": "lb-nyc npm run test",
+    "test:visualize": "npm run test -- --reporter mochawesome --reporter-options reportDir=coverage",
+    "test:report": "npm run test:coverage && npm run test:visualize",
+    "prepublishOnly": "npm test",
+    "verify": "npm run build && npm pack && lb-clean loopback4-migration*.tgz",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nflaig/loopback4-migration"
+  },
+  "bugs": {
+    "url": "https://github.com/nflaig/loopback4-migration/issues"
+  },
+  "homepage": "https://github.com/nflaig/loopback4-migration#readme",
+  "author": "Nico Flaig <nflaig@protonmail.com>",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "peerDependencies": {
+    "@loopback/boot": "*",
+    "@loopback/context": "*",
+    "@loopback/core": ">=2.8.0",
+    "@loopback/repository": ">=2.5.0"
+  },
+  "dependencies": {
+    "compare-versions": "3.6.0"
+  },
+  "devDependencies": {
+    "@loopback/boot": "2.3.2",
+    "@loopback/build": "5.4.3",
+    "@loopback/context": "3.8.2",
+    "@loopback/core": "2.8.0",
+    "@loopback/eslint-config": "8.0.1",
+    "@loopback/repository": "2.6.0",
+    "@loopback/testlab": "3.1.7",
+    "@types/node": "14.0.13",
+    "eslint": "7.2.0",
+    "husky": "4.2.5",
+    "mochawesome": "6.1.1",
+    "source-map-support": "0.5.19",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
+    }
+  }
+}

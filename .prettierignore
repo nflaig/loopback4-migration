@@ -1,0 +1,5 @@
+dist
+coverage
+*.json
+*.yaml
+*.yml
