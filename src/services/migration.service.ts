@@ -10,6 +10,7 @@ import {
 } from "@loopback/core";
 import { repository } from "@loopback/repository";
 import { promisify } from "util";
+import { resolve } from "path";
 import { exists as existsAsync, readFile as readFileAsync } from "fs";
 import compareVersions from "compare-versions";
 import { MigrationRepository } from "../repositories";
@@ -69,7 +70,7 @@ export class MigrationService {
         if (appVersion) return appVersion;
 
         let packageInfo: PackageInfo | undefined;
-        const packagePath = `${this.projectRoot}/../package.json`;
+        const packagePath = resolve(this.projectRoot, "../package.json");
 
         if (await exists(packagePath)) {
             const fileContent = await readFile(packagePath, "utf8");
