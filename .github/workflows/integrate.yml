@@ -1,4 +1,4 @@
-name: CI
+name: integrate
 
 on:
   pull_request:

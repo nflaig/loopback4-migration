@@ -1,6 +1,7 @@
 # loopback4-migration
 
 [![npm package](https://badge.fury.io/js/loopback4-migration.svg)](https://www.npmjs.com/package/loopback4-migration)
+[![Coverage Status](https://coveralls.io/repos/nflaig/loopback4-migration/badge.svg?branch=master)](https://coveralls.io/r/nflaig/loopback4-migration?branch=master)
 
 Migration component that can be used by all applications build with Loopback 4 to manage migration tasks
 such as database updates.

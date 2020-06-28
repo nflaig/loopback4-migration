@@ -29,6 +29,7 @@
     "prettier:fix": "npm run prettier:cli -- --write",
     "eslint": "lb-eslint --report-unused-disable-directives .",
     "eslint:fix": "npm run eslint -- --fix",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "pretest": "npm run clean && npm run build",
     "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js",
@@ -36,6 +37,7 @@
     "test:coverage": "lb-nyc npm run test",
     "test:visualize": "npm run test -- --reporter mochawesome --reporter-options reportDir=coverage",
     "test:report": "npm run test:coverage && npm run test:visualize",
+    "test:coveralls": "lb-nyc -r lcov npm run test:dev && coveralls",
     "prepublishOnly": "npm test",
     "verify": "npm run build && npm pack && lb-clean loopback4-migration*.tgz",
     "prepack": "npm run build"
@@ -73,6 +75,7 @@
     "@loopback/repository": "2.6.0",
     "@loopback/testlab": "3.1.7",
     "@types/node": "14.0.13",
+    "coveralls": "3.1.0",
     "eslint": "7.2.0",
     "husky": "4.2.5",
     "mochawesome": "6.1.1",
