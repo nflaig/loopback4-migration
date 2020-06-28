@@ -2,8 +2,7 @@ name: publish
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   npm-publish:
