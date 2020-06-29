@@ -1,7 +1,12 @@
 # loopback4-migration
 
-[![npm package](https://badge.fury.io/js/loopback4-migration.svg)](https://www.npmjs.com/package/loopback4-migration)
 [![Coverage Status](https://coveralls.io/repos/github/nflaig/loopback4-migration/badge.svg?branch=master)](https://coveralls.io/github/nflaig/loopback4-migration?branch=master)
+[![npm vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/loopback4-migration.svg?label=npm%20vulnerabilities&style=flat-square)](https://www.npmjs.com/package/loopback4-migration)
+
+[![Latest version](https://img.shields.io/npm/v/loopback4-migration.svg?style=flat-square)](https://www.npmjs.com/package/loopback4-migration)
+[![License](https://img.shields.io/github/license/nflaig/loopback4-migration.svg?color=blue&label=License&style=flat-square)](https://github.com/nflaig/loopback4-migration/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/npm/dw/loopback4-migration.svg?label=Downloads&style=flat-square&color=blue)](https://www.npmjs.com/package/loopback4-migration)
+[![Total Downloads](https://img.shields.io/npm/dt/loopback4-migration.svg?label=Total%20Downloads&style=flat-square&color=blue)](https://www.npmjs.com/package/loopback4-migration)
 
 Migration component that can be used by all applications build with Loopback 4 to manage migration tasks
 such as database updates.
