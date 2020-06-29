@@ -13,11 +13,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
+      - run: npm ci
       - uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
         with:
           tag_name: "v%s"
           tag_message: "v%s"
-          commit_pattern: "^Release Version (\\S+)"
+          commit_pattern: "^Release version (\\S+)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
