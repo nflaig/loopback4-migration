@@ -1,0 +1,16 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  coveralls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: npm run build
