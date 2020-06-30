@@ -2,6 +2,7 @@
 
 [![Actions Status](https://github.com/nflaig/loopback4-migration/workflows/build/badge.svg)](https://github.com/nflaig/loopback4-migration/actions)
 [![Coverage Status](https://coveralls.io/repos/github/nflaig/loopback4-migration/badge.svg?branch=master)](https://coveralls.io/github/nflaig/loopback4-migration?branch=master)
+[![Dependencies Status](https://david-dm.org/nflaig/loopback4-migration/status.svg)](https://david-dm.org/nflaig/loopback4-migration)
 [![npm vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/loopback4-migration.svg?label=npm%20vulnerabilities&style=flat-square)](https://www.npmjs.com/package/loopback4-migration)
 
 [![Latest version](https://img.shields.io/npm/v/loopback4-migration.svg?style=flat-square)](https://www.npmjs.com/package/loopback4-migration)
