@@ -26,10 +26,12 @@ Some dependencies need to have at least a certain version
 @loopback/repository >=2.5.0
 ```
 
-and the application needs to have the `RepositoryMixin` applied
+and the application needs to have the `RepositoryMixin` applied and to automatically discover the
+application version and the migration scripts the `BootMixin` is required although there is the option
+of ([manual configuration](#configuration)).
 
  ```ts
- class MyApplication extends RepositoryMixin(Application) {}
+ class MyApplication extends BootMixin(RepositoryMixin(Application)) {}
  ```
 
 ## Installation
