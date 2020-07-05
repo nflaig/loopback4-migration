@@ -5,7 +5,9 @@ import {
     givenMigrationExists,
     validateMigration,
     migrationRepository,
-    getApplication
+    getApplication,
+    migrateSchema,
+    omit
 } from "../../helpers";
 import { MockMigrationScript } from "../../fixtures/migrations";
 import { testdb } from "../../fixtures/datasources";
@@ -13,7 +15,11 @@ import { MigrationAction } from "../../../types";
 import { MigrationRepository } from "../../../repositories";
 
 describe("MigrationRepository (integration)", () => {
+    before(migrateSchema);
+
     beforeEach(givenEmptyDatabase);
+
+    after(givenEmptyDatabase);
 
     describe("constructor()", () => {
         it("should use the existing data source of the application if no data source name is specified", () => {
@@ -69,8 +75,12 @@ describe("MigrationRepository (integration)", () => {
 
             const latestMigration = await migrationRepository.findLatestMigration();
 
-            expect(latestMigration).to.not.deepEqual(firstMigration);
-            expect(latestMigration).to.deepEqual(secondMigration);
+            expect(omit(latestMigration, "appliedAt")).to.not.deepEqual(
+                omit(firstMigration, "appliedAt")
+            );
+            expect(omit(latestMigration, "appliedAt")).to.deepEqual(
+                omit(secondMigration, "appliedAt")
+            );
         });
     });
 

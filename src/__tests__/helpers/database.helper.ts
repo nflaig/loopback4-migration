@@ -7,6 +7,10 @@ import { MigrationConfig } from "../../types";
 
 export const migrationRepository = new MigrationRepository(getApplication(), [testdb], configData);
 
+export async function migrateSchema() {
+    await getApplication().migrateSchema();
+}
+
 export async function givenEmptyDatabase() {
     await migrationRepository.deleteAll();
 }

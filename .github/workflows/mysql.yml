@@ -1,0 +1,33 @@
+name: mysql
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql database: "testdb"
+        mysql version: "5.7"
+        mysql user: "test"
+        mysql password: ${{ secrets.MYSQL_PASSWORD }}
+
+    - run: npm ci
+    - run: npm run test:mysql
+      env:
+        MYSQL_PASSWORD: "${{ secrets.MYSQL_PASSWORD }}"
