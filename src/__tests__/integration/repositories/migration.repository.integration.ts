@@ -88,7 +88,7 @@ describe("MigrationRepository (integration)", () => {
                 action
             );
 
-            validateMigration(createdMigration, { version: migrationScript.version, action });
+            validateMigration(createdMigration, { ...migrationScript, action });
         });
     });
 });
