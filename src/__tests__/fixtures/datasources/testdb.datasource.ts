@@ -15,7 +15,8 @@ const mysql = {
     port: 3307,
     user: "test",
     password: process.env.MYSQL_PASSWORD,
-    database: "testdb"
+    database: "testdb",
+    insecureAuth: true
 };
 
 const postgresql = {
