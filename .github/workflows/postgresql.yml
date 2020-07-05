@@ -23,6 +23,7 @@ jobs:
     - uses: harmon758/postgresql-action@v1
       with:
         postgresql version: '11'
+        postgresql db: "testdb"
 
     - run: npm ci
     - run: npm run test:postgresql

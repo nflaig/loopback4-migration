@@ -21,7 +21,8 @@ const dataSources = [
         name: "postgresql",
         connector: "postgresql",
         host: "localhost",
-        port: 5432
+        port: 5432,
+        database: "testdb"
     },
     {
         name: "memory",
