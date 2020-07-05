@@ -5,7 +5,7 @@ on:
     branches: [master, chore/test_dbs]
 
 jobs:
-  test_mysql:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,6 +23,10 @@ jobs:
     - uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: "testdb"
+        mysql user: "test"
+        mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
     - run: npm ci
     - run: npm run test:mysql
+      env:
+        MYSQL_PASSWORD: "${{ secrets.MYSQL_PASSWORD }}"

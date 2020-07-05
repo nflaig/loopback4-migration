@@ -5,7 +5,7 @@ on:
     branches: [master, chore/test_dbs]
 
 jobs:
-  test_mongodb:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
