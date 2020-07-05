@@ -1,7 +1,6 @@
 import { migrationData } from "../../fixtures/data";
 import { Migration } from "../../../models";
-import { validateMigration } from "../../helpers/validation.helper";
-import { givenMigrationExists } from "../../helpers";
+import { givenMigration } from "../../helpers";
 import { expect } from "@loopback/testlab";
 import { Entity } from "@loopback/repository";
 
@@ -12,9 +11,12 @@ describe("Migration (unit)", () => {
         expect(migration).to.be.instanceOf(Entity);
     });
 
-    it("should have properties set in constructor and generate default properties", async () => {
-        const migration = await givenMigrationExists();
+    it("should have properties set in constructor", async () => {
+        const migration = givenMigration();
 
-        validateMigration(migration, migrationData);
+        expect(migration.version).to.equal(migrationData.version);
+        expect(migration.scriptName).to.equal(migrationData.scriptName);
+        expect(migration.description).to.equal(migrationData.description);
+        expect(migration.action).to.equal(migrationData.action);
     });
 });

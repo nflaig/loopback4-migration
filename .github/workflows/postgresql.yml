@@ -1,0 +1,28 @@
+name: postgresql
+
+on:
+  push:
+    branches: [master, chore/test_dbs]
+
+jobs:
+  test_postgresql:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 13.x, 14.x]
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '11'
+
+    - run: npm ci
+    - run: npm run test:postgresql

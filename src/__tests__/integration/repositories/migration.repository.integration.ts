@@ -15,6 +15,8 @@ import { MigrationRepository } from "../../../repositories";
 describe("MigrationRepository (integration)", () => {
     beforeEach(givenEmptyDatabase);
 
+    after(givenEmptyDatabase);
+
     describe("constructor()", () => {
         it("should use the existing data source of the application if no data source name is specified", () => {
             const existingdb = new juggler.DataSource({ name: "existingdb" });
