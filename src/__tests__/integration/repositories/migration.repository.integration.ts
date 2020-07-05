@@ -6,7 +6,8 @@ import {
     validateMigration,
     migrationRepository,
     getApplication,
-    migrateSchema
+    migrateSchema,
+    omit
 } from "../../helpers";
 import { MockMigrationScript } from "../../fixtures/migrations";
 import { testdb } from "../../fixtures/datasources";
@@ -74,8 +75,12 @@ describe("MigrationRepository (integration)", () => {
 
             const latestMigration = await migrationRepository.findLatestMigration();
 
-            expect(latestMigration).to.not.deepEqual(firstMigration);
-            expect(latestMigration).to.deepEqual(secondMigration);
+            expect(omit(latestMigration, "appliedAt")).to.not.deepEqual(
+                omit(firstMigration, "appliedAt")
+            );
+            expect(omit(latestMigration, "appliedAt")).to.deepEqual(
+                omit(secondMigration, "appliedAt")
+            );
         });
     });
 

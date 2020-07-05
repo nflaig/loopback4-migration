@@ -6,7 +6,7 @@ import {
     givenMigrationExists,
     migrateSchema
 } from "../../helpers/database.helper";
-import { TestApplication, getApplication, validateMigration } from "../../helpers";
+import { TestApplication, getApplication, validateMigration, omit } from "../../helpers";
 import { configData } from "../../fixtures/data";
 import { MigrationScript, MigrationAction } from "../../../types";
 import { MockMigrationScript } from "../../fixtures/migrations";
@@ -46,7 +46,9 @@ describe("MigrationService (integration)", () => {
             const migrations = await migrationRepository.find();
 
             expect(migrations.length).to.equal(1);
-            expect(migrations[0]).to.deepEqual(existingMigration);
+            expect(omit(migrations[0], "appliedAt")).to.deepEqual(
+                omit(existingMigration, "appliedAt")
+            );
         });
     });
 
