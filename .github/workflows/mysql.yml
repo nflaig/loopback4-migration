@@ -25,7 +25,7 @@ jobs:
         host port: 3307
         container port: 3307
         mysql database: "testdb"
-        mysql version: "8.0"
+        mysql version: "5.0"
         mysql user: "test"
         mysql password: ${{ secrets.MYSQL_PASSWORD }}
 
