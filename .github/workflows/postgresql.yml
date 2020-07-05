@@ -11,12 +11,18 @@ jobs:
       matrix:
         node-version: [10.x, 12.x, 13.x, 14.x]
 
+    services:
+      postgres:
+        image: postgres:9.6
+        env:
+          POSTGRES_DB: testdb
+        ports:
+        - 5432/tcp
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-
-    - name: Collect Docker Logs
-      uses: jwalton/gh-docker-logs@v1.0.0
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -30,3 +36,6 @@ jobs:
 
     - run: npm ci
     - run: npm run test:postgresql
+      env:
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
