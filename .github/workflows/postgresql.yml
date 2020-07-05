@@ -25,5 +25,6 @@ jobs:
         postgresql version: '9'
         postgresql db: "testdb"
 
+    - run: sleep 30s
     - run: npm ci
     - run: npm run test:postgresql
