@@ -2,14 +2,14 @@ name: mysql
 
 on:
   push:
-    branches: [master, chore/test_dbs]
+    branches: [master]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x, 14.x]
+        node-version: [10.x, 12.x]
 
     steps:
     - name: Git checkout
