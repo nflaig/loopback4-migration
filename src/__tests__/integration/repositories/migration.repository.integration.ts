@@ -69,8 +69,8 @@ describe("MigrationRepository (integration)", () => {
 
     describe("findLatestMigration()", () => {
         it("should return the latest applied migration", async () => {
-            const firstMigration = await givenMigrationExists();
-            const secondMigration = await givenMigrationExists();
+            const firstMigration = await givenMigrationExists({ changeNumber: 1 });
+            const secondMigration = await givenMigrationExists({ changeNumber: 2 });
 
             const latestMigration = await migrationRepository.findLatestMigration();
 
@@ -85,10 +85,11 @@ describe("MigrationRepository (integration)", () => {
             const action = MigrationAction.Downgrade;
             const createdMigration = await migrationRepository.createMigration(
                 migrationScript,
-                action
+                action,
+                0
             );
 
-            validateMigration(createdMigration, { ...migrationScript, action });
+            validateMigration(createdMigration, { ...migrationScript, action, changeNumber: 1 });
         });
     });
 });

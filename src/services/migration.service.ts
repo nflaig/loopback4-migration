@@ -25,6 +25,7 @@ const readFile = promisify(readFileAsync);
 export class MigrationService {
     private appVersion: string | undefined;
     private databaseVersion: string | undefined;
+    private latestChangeNumber: number;
     private isDowngraded: boolean;
     private migrationScripts: MigrationScript[];
 
@@ -49,6 +50,7 @@ export class MigrationService {
 
         const latestMigration = await this.migrationRepository.findLatestMigration();
         this.databaseVersion = latestMigration?.version;
+        this.latestChangeNumber = latestMigration?.changeNumber ?? 0;
         this.isDowngraded = latestMigration?.action === MigrationAction.Downgrade;
 
         const isCurrentVersion = !this.isDowngraded && this.databaseVersion === this.appVersion;
@@ -142,7 +144,12 @@ export class MigrationService {
     private async executeUpgradeScripts(upgradeScripts: MigrationScript[]): Promise<void> {
         for (const script of this.sortMigrationScripts(upgradeScripts)) {
             await script.up();
-            await this.migrationRepository.createMigration(script, MigrationAction.Upgrade);
+            await this.migrationRepository.createMigration(
+                script,
+                MigrationAction.Upgrade,
+                this.latestChangeNumber
+            );
+            this.incrementChangeNumber();
         }
     }
 
@@ -150,14 +157,23 @@ export class MigrationService {
         for (const script of this.sortMigrationScripts(downgradeScripts).reverse()) {
             if (script.down) {
                 await script.down();
-                await this.migrationRepository.createMigration(script, MigrationAction.Downgrade);
+                await this.migrationRepository.createMigration(
+                    script,
+                    MigrationAction.Downgrade,
+                    this.latestChangeNumber
+                );
+                this.incrementChangeNumber();
             }
         }
     }
 
-    private sortMigrationScripts<T extends MigrationScript>(migrationScripts: T[]) {
+    private sortMigrationScripts<T extends MigrationScript>(migrationScripts: T[]): T[] {
         return migrationScripts.sort((scriptA: T, scriptB: T) =>
             compareVersions(scriptA.version, scriptB.version)
         );
+    }
+
+    private incrementChangeNumber(): void {
+        this.latestChangeNumber = this.latestChangeNumber + 1;
     }
 }
