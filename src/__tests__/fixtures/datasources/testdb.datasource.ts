@@ -22,6 +22,8 @@ const dataSources = [
         connector: "postgresql",
         host: process.env.POSTGRES_HOST,
         port: process.env.POSTGRES_PORT,
+        user: "test",
+        password: process.env.POSTGRESQL_PASSWORD,
         database: "testdb"
     },
     {
