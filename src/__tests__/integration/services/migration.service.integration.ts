@@ -3,7 +3,8 @@ import { MigrationService } from "../../../services";
 import {
     givenEmptyDatabase,
     migrationRepository,
-    givenMigrationExists
+    givenMigrationExists,
+    migrateSchema
 } from "../../helpers/database.helper";
 import { TestApplication, getApplication, validateMigration } from "../../helpers";
 import { configData } from "../../fixtures/data";
@@ -14,6 +15,8 @@ describe("MigrationService (integration)", () => {
     let migrationService: MigrationService;
     let application: TestApplication;
     let migrationScript: MigrationScript;
+
+    before(migrateSchema);
 
     beforeEach(givenEmptyDatabase);
     beforeEach(givenApplication);

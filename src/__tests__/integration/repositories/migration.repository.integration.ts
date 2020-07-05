@@ -5,7 +5,8 @@ import {
     givenMigrationExists,
     validateMigration,
     migrationRepository,
-    getApplication
+    getApplication,
+    migrateSchema
 } from "../../helpers";
 import { MockMigrationScript } from "../../fixtures/migrations";
 import { testdb } from "../../fixtures/datasources";
@@ -13,6 +14,8 @@ import { MigrationAction } from "../../../types";
 import { MigrationRepository } from "../../../repositories";
 
 describe("MigrationRepository (integration)", () => {
+    before(migrateSchema);
+
     beforeEach(givenEmptyDatabase);
 
     after(givenEmptyDatabase);
