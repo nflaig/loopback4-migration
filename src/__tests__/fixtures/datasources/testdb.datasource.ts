@@ -12,11 +12,10 @@ const mysql = {
     name: "testdb",
     connector: "mysql",
     host: "localhost",
-    port: 3307,
+    port: 3306,
     user: "test",
     password: process.env.MYSQL_PASSWORD,
-    database: "testdb",
-    insecureAuth: true
+    database: "testdb"
 };
 
 const postgresql = {

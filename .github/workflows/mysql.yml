@@ -22,8 +22,6 @@ jobs:
 
     - uses: mirromutth/mysql-action@v1.1
       with:
-        host port: 3307
-        container port: 3307
         mysql database: "testdb"
         mysql version: "5.7"
         mysql user: "test"
