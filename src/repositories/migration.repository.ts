@@ -45,15 +45,20 @@ export class MigrationRepository extends DefaultCrudRepository<
     }
 
     async findLatestMigration(): Promise<Migration | null> {
-        return this.findOne({ order: ["appliedAt DESC"] });
+        return this.findOne({ order: ["changeNumber DESC", "appliedAt DESC"] });
     }
 
-    async createMigration(script: MigrationScript, action: MigrationAction): Promise<Migration> {
+    async createMigration(
+        script: MigrationScript,
+        action: MigrationAction,
+        latestChangeNumber: number
+    ): Promise<Migration> {
         return this.create({
             version: script.version,
             scriptName: script.scriptName,
             description: script.description,
-            action: action
+            action: action,
+            changeNumber: latestChangeNumber + 1
         });
     }
 }

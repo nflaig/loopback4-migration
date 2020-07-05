@@ -5,5 +5,6 @@ export const migrationData: Partial<Migration> = {
     version: "1.0.0",
     scriptName: "test",
     description: "test",
-    action: MigrationAction.Upgrade
+    action: MigrationAction.Upgrade,
+    changeNumber: 1
 };

@@ -30,7 +30,8 @@ describe("MigrationService (integration)", () => {
 
             validateMigration(migration, {
                 ...migrationScript,
-                action: MigrationAction.Upgrade
+                action: MigrationAction.Upgrade,
+                changeNumber: 1
             });
         });
 

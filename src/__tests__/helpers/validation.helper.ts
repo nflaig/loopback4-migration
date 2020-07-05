@@ -10,4 +10,5 @@ export function validateMigration(migration: Migration, expectedMigration: Parti
     expect(migration.description).to.equal(expectedMigration.description);
     expect(migration.action).to.equal(expectedMigration.action);
     expect(migration.appliedAt).to.be.a.Date();
+    expect(migration.changeNumber).to.equal(expectedMigration.changeNumber);
 }

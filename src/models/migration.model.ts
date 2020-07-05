@@ -39,6 +39,12 @@ export class Migration extends Entity {
     })
     appliedAt: string;
 
+    @property({
+        type: "number",
+        required: true
+    })
+    changeNumber: number;
+
     constructor(data?: Partial<Migration>) {
         super(data);
     }
