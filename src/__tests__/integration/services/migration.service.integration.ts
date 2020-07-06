@@ -1,12 +1,15 @@
 import { expect } from "@loopback/testlab";
 import { MigrationService } from "../../../services";
 import {
+    TestApplication,
+    getApplication,
+    validateMigration,
     givenEmptyDatabase,
     migrationRepository,
     givenMigrationExists,
-    migrateSchema
-} from "../../helpers/database.helper";
-import { TestApplication, getApplication, validateMigration, omit } from "../../helpers";
+    migrateSchema,
+    omit
+} from "../../helpers";
 import { configData } from "../../fixtures/data";
 import { MigrationScript, MigrationAction } from "../../../types";
 import { MockMigrationScript } from "../../fixtures/migrations";

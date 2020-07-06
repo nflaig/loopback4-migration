@@ -5,8 +5,8 @@ import { migrationScript } from "../../../decorators";
 @migrationScript()
 export class MockMigrationScript implements MigrationScript {
     version = migrationData.version as string;
-    scriptName = "test";
-    description = "test";
+    scriptName = migrationData.scriptName;
+    description = migrationData.description;
 
     up() {}
 

@@ -6,9 +6,9 @@ import {
     validateMigration,
     migrationRepository,
     getApplication,
+    TestApplication,
     migrateSchema,
-    omit,
-    TestApplication
+    omit
 } from "../../helpers";
 import { MockMigrationScript } from "../../fixtures/migrations";
 import { testdb } from "../../fixtures/datasources";
