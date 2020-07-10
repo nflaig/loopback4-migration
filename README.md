@@ -146,7 +146,7 @@ export class MigrationScript101 implements MigrationScript {
 
 ## Configuration
 
-The component can be configured in `application.ts`.
+The component can be configured in `application.ts` to overwrite the default values.
 
 ### Update default values
 
@@ -155,7 +155,7 @@ The component can be configured in `application.ts`.
   currently only supports [Semantic Versioning](https://semver.org/).
 - `dataSourceName` - The name of the data source which should be used to track the applied migrations.
   This is mostly relevant if the application uses more than one data source.
-- `modelName` - The name of the model which will be used as table or collection name
+- `modelName` - The name of the model which will be used as table or collection name to store the applied migrations.
 - `migrationScripts` - An array of migration script classes that implement the `MigrationScript` interface.
   Setting the scripts manually is usually not required since they are automatically discovered and bound
   to the application. Duplicate scripts will be removed and not bound to the application.
