@@ -201,6 +201,10 @@ this.bootOptions = {
 };
 ```
 
+## Related resources
+
+- [Evolutionary Database Design](https://www.martinfowler.com/articles/evodb.html)
+
 ## Contributing
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nflaig/loopback4-migration/issues)
