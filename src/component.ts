@@ -1,4 +1,4 @@
-import { Component, bind, ContextTags } from "@loopback/core";
+import { Component, bind, ContextTags, createServiceBinding } from "@loopback/core";
 import { Migration } from "./models";
 import { MigrationObserver } from "./observers";
 import { MigrationRepository } from "./repositories";
@@ -10,7 +10,7 @@ import { MigrationBooter } from "./booters";
 export class MigrationComponent implements Component {
     models = [Migration];
     repositories = [MigrationRepository];
-    services = [MigrationService];
     lifeCycleObservers = [MigrationObserver];
     booters = [MigrationBooter];
+    bindings = [createServiceBinding(MigrationService)];
 }

@@ -17,9 +17,11 @@ describe("MigrationComponent (unit)", () => {
         it("should set all artifacts correctly", async () => {
             expect(migrationComponent.models).to.deepEqual([Migration]);
             expect(migrationComponent.repositories).to.deepEqual([MigrationRepository]);
-            expect(migrationComponent.services).to.deepEqual([MigrationService]);
             expect(migrationComponent.lifeCycleObservers).to.deepEqual([MigrationObserver]);
             expect(migrationComponent.booters).to.deepEqual([MigrationBooter]);
+            expect(migrationComponent.bindings[0].key).to.equal(
+                `services.${MigrationService.name}`
+            );
         });
     });
 });

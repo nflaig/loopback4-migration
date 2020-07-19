@@ -1,11 +1,6 @@
 /* eslint-disable indent, no-unused-vars, @typescript-eslint/no-unused-vars */
 import { inject, config, CoreBindings, Application, filterByTag } from "@loopback/core";
-import {
-    DefaultCrudRepository,
-    juggler,
-    RepositoryBindings,
-    RepositoryTags
-} from "@loopback/repository";
+import { DefaultCrudRepository, juggler } from "@loopback/repository";
 import { MigrationBindings } from "../keys";
 import { Migration, updateMigrationModelName } from "../models";
 import { MigrationScript, MigrationAction, MigrationConfig } from "../types";
@@ -17,7 +12,7 @@ export class MigrationRepository extends DefaultCrudRepository<
     constructor(
         @inject(CoreBindings.APPLICATION_INSTANCE)
         app: Application,
-        @inject(filterByTag(RepositoryTags.DATASOURCE), { optional: true })
+        @inject(filterByTag("datasource"), { optional: true })
         dataSources: juggler.DataSource[] = [],
         @config({ fromBinding: MigrationBindings.COMPONENT, optional: true })
         migrationConfig: MigrationConfig = {}
@@ -27,7 +22,7 @@ export class MigrationRepository extends DefaultCrudRepository<
         const { dataSourceName, modelName } = migrationConfig;
 
         if (dataSourceName) {
-            const bindingKey = `${RepositoryBindings.DATASOURCES}.${dataSourceName}`;
+            const bindingKey = `datasources.${dataSourceName}`;
             try {
                 dataSource = app.getSync<juggler.DataSource>(bindingKey);
             } catch {

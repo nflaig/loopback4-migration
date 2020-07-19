@@ -18,11 +18,13 @@ compared to the database version.
 
 ## Prerequisites
 
-Some dependencies need to have at least a certain version
+Some dependencies need to be installed as peer dependencies
 
 ```sh
-@loopback/core >=2.8.0
-@loopback/repository >=2.5.0
+@loopback/boot
+@loopback/context
+@loopback/core
+@loopback/repository
 ```
 
 and the application needs to have the `RepositoryMixin` applied and to automatically discover the

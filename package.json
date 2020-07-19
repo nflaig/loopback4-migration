@@ -62,19 +62,19 @@
   "peerDependencies": {
     "@loopback/boot": "*",
     "@loopback/context": "*",
-    "@loopback/core": ">=2.8.0",
-    "@loopback/repository": ">=2.5.0"
+    "@loopback/core": "*",
+    "@loopback/repository": "*"
   },
   "dependencies": {
     "compare-versions": "^3.6.0"
   },
   "devDependencies": {
-    "@loopback/boot": "2.3.2",
+    "@loopback/boot": "1.x.x",
     "@loopback/build": "6.1.0",
-    "@loopback/context": "3.8.2",
-    "@loopback/core": "2.9.1",
+    "@loopback/context": "1.x.x",
+    "@loopback/core": "1.x.x",
     "@loopback/eslint-config": "8.0.3",
-    "@loopback/repository": "2.9.0",
+    "@loopback/repository": "1.x.x",
     "@loopback/testlab": "3.2.0",
     "@types/node": "14.0.23",
     "coveralls": "3.1.0",
