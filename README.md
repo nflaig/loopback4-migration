@@ -29,7 +29,7 @@ Some dependencies need to be installed as peer dependencies
 
 and the application needs to have the `RepositoryMixin` applied and to automatically discover the
 application version and the migration scripts the `BootMixin` is required although there is the option
-of ([manual configuration](#configuration)).
+of [manual configuration](#configuration).
 
  ```ts
  class MyApplication extends BootMixin(RepositoryMixin(Application)) {}
