@@ -174,6 +174,6 @@ export class MigrationService {
     }
 
     private incrementChangeNumber(): void {
-        this.latestChangeNumber = this.latestChangeNumber + 1;
+        this.latestChangeNumber += 1;
     }
 }
