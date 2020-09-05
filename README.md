@@ -1,13 +1,13 @@
 # loopback4-migration
 
-[![Actions Status](https://github.com/nflaig/loopback4-migration/workflows/build/badge.svg)](https://github.com/nflaig/loopback4-migration/actions)
-[![Coverage Status](https://coveralls.io/repos/github/nflaig/loopback4-migration/badge.svg?branch=master)](https://coveralls.io/github/nflaig/loopback4-migration?branch=master)
-[![Dependencies Status](https://david-dm.org/nflaig/loopback4-migration/status.svg)](https://david-dm.org/nflaig/loopback4-migration)
+[![Actions Status][build-badge]][actions]
+[![Coverage Status][coveralls-badge]][coveralls]
+[![Dependencies Status][dependencies-badge]][dependencies]
 
-[![Latest version](https://img.shields.io/npm/v/loopback4-migration.svg?style=flat-square)](https://www.npmjs.com/package/loopback4-migration)
-[![License](https://img.shields.io/github/license/nflaig/loopback4-migration.svg?color=blue&label=License&style=flat-square)](https://github.com/nflaig/loopback4-migration/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/npm/dw/loopback4-migration.svg?label=Downloads&style=flat-square&color=blue)](https://www.npmjs.com/package/loopback4-migration)
-[![Total Downloads](https://img.shields.io/npm/dt/loopback4-migration.svg?label=Total%20Downloads&style=flat-square&color=blue)](https://www.npmjs.com/package/loopback4-migration)
+[![Latest version][npm-version-badge]][npm-package]
+[![License][license-badge]][license]
+[![Downloads][npm-downloads-badge]][npm-package]
+[![Total Downloads][npm-total-downloads-badge]][npm-package]
 
 Migration component that can be used by all applications build with Loopback 4 to manage migration tasks
 such as database updates.
@@ -87,8 +87,8 @@ or change the default directory and naming convention, see [Configuration](#upda
 
 Another option is to use the `@migrationScript` decorator to add the binding tag to the migration script class and
 bind it to the application.
-The decorator also allows to [configure the scope](https://loopback.io/doc/en/lb4/Binding.html#configure-the-scope)
-and add additional [tags](https://loopback.io/doc/en/lb4/Binding.html#configure-the-scope).
+The decorator also allows to [configure the scope][lb4-binding-scope]
+and add additional [tags][lb4-binding-tags].
 
 **Note:** Each migration script needs to have a unique class name else it will be discarded as a duplicate.
 
@@ -111,8 +111,8 @@ property and sets `reviews` to an empty array. This is just a simple example but
 assumption in the code that the `reviews` property is always an array and potentially avoids issues.
 A downgrade function is not implemented since the update is backwards compatible.
 
-It also utilizes [Dependency Injection](https://loopback.io/doc/en/lb4/Dependency-injection.html)
-to retrieve the required dependencies such as [repositories](https://loopback.io/doc/en/lb4/Repositories.html).
+It also utilizes [Dependency Injection][lb4-dependency-injection]
+to retrieve the required dependencies such as [repositories][lb4-repositories].
 
 The `@migrationScript` decorator would not be required here since the script follows the naming convention
 and would be automatically discovered. This is just to show how the decorator could be used.
@@ -154,7 +154,7 @@ The component can be configured in `application.ts` to overwrite the default val
 
 - `appVersion` - The application version retrieved from `package.json` can either be overwritten with
   this property or by setting the `APPLICATION_VERSION` environment variable. Note that the module
-  currently only supports [Semantic Versioning](https://semver.org/).
+  currently only supports [Semantic Versioning][semantic-versioning].
 - `dataSourceName` - The name of the data source which should be used to track the applied migrations.
   This is mostly relevant if the application uses more than one data source.
 - `modelName` - The name of the model which will be used as table or collection name to store the applied migrations.
@@ -205,12 +205,35 @@ this.bootOptions = {
 
 ## Related resources
 
-- [Evolutionary Database Design](https://www.martinfowler.com/articles/evodb.html)
+- [Evolutionary Database Design][evolutionary-database-design]
 
 ## Contributing
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/nflaig/loopback4-migration/issues)
+[![contributions welcome][contributions-welcome-badge]][issues]
 
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
+
+[actions]: https://github.com/nflaig/loopback4-migration/actions
+[license]: https://github.com/nflaig/loopback4-migration/blob/master/LICENSE
+[issues]: https://github.com/nflaig/loopback4-migration/issues
+[coveralls]: https://coveralls.io/github/nflaig/loopback4-migration?branch=master
+[dependencies]: https://david-dm.org/nflaig/loopback4-migration
+[npm-package]: https://www.npmjs.com/package/loopback4-migration
+
+[build-badge]: https://github.com/nflaig/loopback4-migration/workflows/build/badge.svg
+[coveralls-badge]: https://coveralls.io/repos/github/nflaig/loopback4-migration/badge.svg?branch=master
+[dependencies-badge]: https://david-dm.org/nflaig/loopback4-migration/status.svg
+[npm-version-badge]: https://img.shields.io/npm/v/loopback4-migration.svg?style=flat-square
+[npm-downloads-badge]: https://img.shields.io/npm/dw/loopback4-migration.svg?label=Downloads&style=flat-square&color=blue
+[npm-total-downloads-badge]: https://img.shields.io/npm/dt/loopback4-migration.svg?label=Total%20Downloads&style=flat-square&color=blue
+[license-badge]: https://img.shields.io/github/license/nflaig/loopback4-migration.svg?color=blue&label=License&style=flat-square
+[contributions-welcome-badge]: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+
+[lb4-binding-scope]: https://loopback.io/doc/en/lb4/Binding.html#configure-the-scope
+[lb4-binding-tags]: https://loopback.io/doc/en/lb4/Binding.html#describe-tags
+[lb4-repositories]: https://loopback.io/doc/en/lb4/Repositories.html
+[lb4-dependency-injection]: https://loopback.io/doc/en/lb4/Dependency-injection.html
+[evolutionary-database-design]: https://www.martinfowler.com/articles/evodb.html
+[semantic-versioning]: https://semver.org/
