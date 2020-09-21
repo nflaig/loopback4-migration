@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://github.com/nflaig/loopback4-migration/compare/v1.1.0...v1.2.0) (2020-09-21)
+
+### Features
+
+* add table of contents to README
+
+
+
+
 ## [1.1.0](https://github.com/nflaig/loopback4-migration/compare/v1.0.2...v1.1.0) (2020-07-19)
 
 ### Features
