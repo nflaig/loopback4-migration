@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # loopback4-migration
 
 [![Actions Status][build-badge]][actions]
@@ -15,6 +16,18 @@ such as database updates.
 It provides a common interface to implement custom migration scripts and automatically handles
 the versioning of the database and the execution of the scripts based on the application version
 compared to the database version.
+
+<!-- omit in toc -->
+## Contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Example](#example)
+- [Configuration](#configuration)
+- [Related resources](#related-resources)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Prerequisites
 
@@ -41,6 +54,7 @@ of [manual configuration](#configuration).
 npm install loopback4-migration
 ```
 
+<!-- omit in toc -->
 ### Bind the component in `application.ts`
 
 This will add the required model, repository and further artifacts to the application. By default,
@@ -150,6 +164,7 @@ export class MigrationScript101 implements MigrationScript {
 
 The component can be configured in `application.ts` to overwrite the default values.
 
+<!-- omit in toc -->
 ### Update default values
 
 - `appVersion` - The application version retrieved from `package.json` can either be overwritten with
@@ -188,6 +203,7 @@ export class MyApplication extends BootMixin(
 }
 ```
 
+<!-- omit in toc -->
 ### Update directory and naming convention
 
 It is also possible to update the default directory and file extension by changing the `bootOptions`
