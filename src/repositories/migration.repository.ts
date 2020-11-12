@@ -1,4 +1,4 @@
-/* eslint-disable indent, no-unused-vars, @typescript-eslint/no-unused-vars */
+/* eslint-disable indent */
 import { inject, config, CoreBindings, Application, filterByTag } from "@loopback/core";
 import { DefaultCrudRepository, juggler } from "@loopback/repository";
 import { MigrationBindings } from "../keys";
