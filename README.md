@@ -10,7 +10,7 @@
 [![Downloads][npm-downloads-badge]][npm-package]
 [![Total Downloads][npm-total-downloads-badge]][npm-package]
 
-Migration component that can be used by all applications build with Loopback 4 to manage migration tasks
+Migration component that can be used by all applications build with LoopBack 4 to manage migration tasks
 such as database updates.
 
 It provides a common interface to implement custom migration scripts and automatically handles
@@ -85,16 +85,16 @@ export class MyApplication extends BootMixin(
 ## Usage
 
 The custom migration scripts need to implement the `MigrationScript` interface. The `version` and the
-`up()` method to handle database upgrades always need to be specifed. Optionally, a `scriptName` and
+`up()` method to handle database upgrades always need to be specified. Optionally, a `scriptName` and
 a `description` can be set. In addition, if required and technically possible the `down()` method can
 be implemented which will be used to handle downgrades of the database.
 
 **Note:** downgrading the database to an earlier version might not be possible in all cases and should
 be considered as an edge case. Sometimes it is just impossible to revert the upgrade logic or in other
-cases it might not even be required becasue the upgrade changes are backwards compatible. In any case,
+cases it might not even be required because the upgrade changes are backwards compatible. In any case,
 it is recommended to create a database backup before updating the database.
 
-Migration scripts added to `src/migrations` with the file naming convention `<scriptname>.migration.ts`
+Migration scripts added to `src/migrations` with the file naming convention `<scriptName>.migration.ts`
 are automatically discovered and registered when the application is booted.
 It is also possible to [manually add migration scripts](#update-default-values) from different locations
 or change the default directory and naming convention, see [Configuration](#update-directory-and-naming-convention).
