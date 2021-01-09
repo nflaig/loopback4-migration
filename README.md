@@ -120,42 +120,53 @@ export interface MigrationScript {
 
 ## Example
 
-This is an example of a migration script which updates existing products which do not have the `reviews`
-property and sets `reviews` to an empty array. This is just a simple example but it allows to make the
-assumption in the code that the `reviews` property is always an array and potentially avoids issues.
-A downgrade function is not implemented since the update is backwards compatible.
+This is an example of a migration script which adds the `fullName` property to all existing users
+without the property.
 
-It also utilizes [Dependency Injection][lb4-dependency-injection]
-to retrieve the required dependencies such as [repositories][lb4-repositories].
+It utilizes [Dependency Injection][lb4-dependency-injection] to retrieve the required dependencies
+such as [repositories][lb4-repositories].
 
-The `@migrationScript` decorator would not be required here since the script follows the naming convention
-and would be automatically discovered. This is just to show how the decorator could be used.
+**Note:** The `@migrationScript` decorator would not be required here since the script follows
+the naming convention and would be automatically discovered. This is just to show how the decorator
+would be used.
 
 > src/migrations/1.0.1.migration.ts
 
 ```ts
-import { MigrationScript, migrationScript } from "loopback4-migration";
 import { repository } from "@loopback/repository";
-import { ProductRepository } from "../repositories";
+import { MigrationScript, migrationScript } from "loopback4-migration";
+import { UserRepository } from "../repositories";
 
 @migrationScript()
-export class MigrationScript101 implements MigrationScript {
+export class AddUserFullName implements MigrationScript {
     version = "1.0.1";
+    scriptName = AddUserFullName.name;
+    description = "add full name to users by combining first and last name";
 
     constructor(
-        @repository(ProductRepository)
-        private productRepository: ProductRepository
+        @repository(UserRepository)
+        private userRepository: UserRepository
     ) {}
 
     async up(): Promise<void> {
-        await this.productRepository.updateAll(
-            { reviews: [] },
-            { reviews: { exists: false } }
+        // retrieve all users without fullName property
+        const users = await this.userRepository.find({ where: { fullName: { exists: false } } });
+
+        // add fullName property to each user
+        const updateUsers = users.map(user =>
+            this.userRepository.updateById(user.id, {
+                fullName: `${user.firstName} ${user.lastName}`
+            })
         );
+
+        await Promise.all(updateUsers);
     }
 
     async down(): Promise<void> {
-        // write the statements to rollback the migration if required and possible
+        // remove fullName property from all users
+        await this.userRepository.updateAll(<any>{
+            $unset: { fullName: 0 }
+        });
     }
 }
 ```
