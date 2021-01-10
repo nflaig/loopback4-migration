@@ -150,7 +150,9 @@ export class AddUserFullName implements MigrationScript {
 
     async up(): Promise<void> {
         // retrieve all users without fullName property
-        const users = await this.userRepository.find({ where: { fullName: { exists: false } } });
+        const users = await this.userRepository.find({
+            where: { fullName: { exists: false } }
+        });
 
         // add fullName property to each user
         const updateUsers = users.map(user =>
