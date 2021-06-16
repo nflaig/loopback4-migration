@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 14
       - run: npm ci
       - uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
         with:
