@@ -4,6 +4,10 @@ module.exports = {
         {
             files: ["src/__tests__/**"],
             rules: { "max-nested-callbacks": "off" }
+        },
+        {
+            files: ["src/models/**"],
+            rules: { indent: "off" }
         }
     ],
     parserOptions: {
