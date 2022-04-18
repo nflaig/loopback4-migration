@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 module.exports = {
     extends: ["eslint:recommended", "@loopback/eslint-config"],
     overrides: [
