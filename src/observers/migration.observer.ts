@@ -1,6 +1,9 @@
-import { service, lifeCycleObserver, LifeCycleObserver } from "@loopback/core";
-import { MigrationService } from "../services";
+import { lifeCycleObserver, LifeCycleObserver, service } from "@loopback/core";
+import debugFactory from "debug";
 import { MigrationTags } from "../keys";
+import { MigrationService } from "../services";
+
+const debug = debugFactory("loopback:migration:observer");
 
 @lifeCycleObserver(MigrationTags.MIGRATION)
 export class MigrationObserver implements LifeCycleObserver {
@@ -10,6 +13,8 @@ export class MigrationObserver implements LifeCycleObserver {
     ) {}
 
     async start(): Promise<void> {
+        debug("Invoked migration lifecycle observer");
+
         await this.migrationService.migrate();
     }
 }

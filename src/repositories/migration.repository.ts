@@ -9,9 +9,12 @@ import {
     inject
 } from "@loopback/core";
 import { DefaultCrudRepository, juggler } from "@loopback/repository";
+import debugFactory from "debug";
 import { MigrationBindings } from "../keys";
 import { Migration, updateMigrationModelName } from "../models";
 import { MigrationAction, MigrationConfig, MigrationScript } from "../types";
+
+const debug = debugFactory("loopback:migration:repository");
 
 @bind({ scope: BindingScope.APPLICATION })
 export class MigrationRepository extends DefaultCrudRepository<
@@ -31,7 +34,11 @@ export class MigrationRepository extends DefaultCrudRepository<
         const { dataSourceName, modelName } = migrationConfig;
 
         if (dataSourceName) {
+            debug("Custom datasource name: %s", dataSourceName);
+
             const bindingKey = `datasources.${dataSourceName}`;
+
+            debug("Datasource binding key: %s", bindingKey);
             try {
                 dataSource = app.getSync<juggler.DataSource>(bindingKey);
             } catch {
@@ -43,13 +50,23 @@ export class MigrationRepository extends DefaultCrudRepository<
 
         if (!dataSource) throw new Error("Did not find any data source");
 
+        debug("Datasource used for storing applied migrations: %s", dataSource.name);
+
         const modelClass = modelName ? updateMigrationModelName(Migration, modelName) : Migration;
+
+        debug("Migration model class name: %s", modelClass.name);
 
         super(modelClass, dataSource);
     }
 
     async findLatestMigration(): Promise<Migration | null> {
-        return this.findOne({ order: ["changeNumber DESC", "appliedAt DESC"] });
+        const latestMigration = await this.findOne({
+            order: ["changeNumber DESC", "appliedAt DESC"]
+        });
+
+        debug("Last applied migration: %j", latestMigration);
+
+        return latestMigration;
     }
 
     async createMigration(
@@ -57,12 +74,16 @@ export class MigrationRepository extends DefaultCrudRepository<
         action: MigrationAction,
         latestChangeNumber: number
     ): Promise<Migration> {
-        return this.create({
+        const createdMigration = await this.create({
             version: script.version,
             scriptName: script.scriptName,
             description: script.description,
             action: action,
             changeNumber: latestChangeNumber + 1
         });
+
+        debug("Created migration record: %j", createdMigration);
+
+        return createdMigration;
     }
 }

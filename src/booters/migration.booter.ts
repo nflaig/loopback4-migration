@@ -1,15 +1,18 @@
-import { BootBindings, BaseArtifactBooter, ArtifactOptions, booter, isClass } from "@loopback/boot";
+import { ArtifactOptions, BaseArtifactBooter, BootBindings, booter, isClass } from "@loopback/boot";
 import {
+    Application,
+    BindingScope,
     config,
     Constructor,
     CoreBindings,
-    inject,
-    Application,
     createBindingFromClass,
-    BindingScope
+    inject
 } from "@loopback/core";
+import debugFactory from "debug";
 import { MigrationBindings, MigrationTags } from "../keys";
 import { MigrationScript } from "../types";
+
+const debug = debugFactory("loopback:migration:booter");
 
 @booter("migrations")
 export class MigrationBooter extends BaseArtifactBooter {
@@ -28,7 +31,12 @@ export class MigrationBooter extends BaseArtifactBooter {
         await super.load();
 
         for (const cls of this.classes) {
-            if (!isMigrationScriptClass(cls)) continue;
+            if (!isMigrationScriptClass(cls)) {
+                debug("Skipping class %s. Does not implement MigrationScript interface", cls.name);
+                continue;
+            }
+
+            debug("Found migration script class: %s", cls.name);
 
             const binding = createMigrationScriptBinding(cls);
 

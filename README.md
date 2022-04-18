@@ -24,6 +24,7 @@ compared to the database version.
 - [Usage](#usage)
 - [Example](#example)
 - [Configuration](#configuration)
+- [Debug](#debug)
 - [Related resources](#related-resources)
 - [Contributing](#contributing)
 - [License](#license)
@@ -231,6 +232,11 @@ this.bootOptions = {
 };
 ```
 
+## Debug
+
+To enable debug logs set the `DEBUG` environment variable to `loopback:migration:*`, see
+[Setting debug strings][lb4-debug-strings] for further details.
+
 ## Related resources
 
 - [Evolutionary Database Design][evolutionary-database-design]
@@ -261,5 +267,6 @@ This project is licensed under the MIT license. See the [LICENSE](LICENSE) file 
 [lb4-binding-tags]: https://loopback.io/doc/en/lb4/Binding.html#describe-tags
 [lb4-repositories]: https://loopback.io/doc/en/lb4/Repositories.html
 [lb4-dependency-injection]: https://loopback.io/doc/en/lb4/Dependency-injection.html
+[lb4-debug-strings]: https://loopback.io/doc/en/lb4/Setting-debug-strings.html
 [evolutionary-database-design]: https://www.martinfowler.com/articles/evodb.html
 [semantic-versioning]: https://semver.org/
