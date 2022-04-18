@@ -1,10 +1,19 @@
 /* eslint-disable indent */
-import { inject, config, CoreBindings, Application, filterByTag } from "@loopback/core";
+import {
+    Application,
+    bind,
+    BindingScope,
+    config,
+    CoreBindings,
+    filterByTag,
+    inject
+} from "@loopback/core";
 import { DefaultCrudRepository, juggler } from "@loopback/repository";
 import { MigrationBindings } from "../keys";
 import { Migration, updateMigrationModelName } from "../models";
-import { MigrationScript, MigrationAction, MigrationConfig } from "../types";
+import { MigrationAction, MigrationConfig, MigrationScript } from "../types";
 
+@bind({ scope: BindingScope.APPLICATION })
 export class MigrationRepository extends DefaultCrudRepository<
     Migration,
     typeof Migration.prototype.id
