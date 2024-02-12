@@ -38,7 +38,7 @@
     "test:report": "npm run test:coverage && npm run test:visualize",
     "test:coveralls": "lb-nyc npm test && lb-nyc report --reporter=text-lcov | coveralls",
     "test:mongodb": "npm i -D loopback-connector-mongodb && env DATASOURCE=mongodb npm test",
-    "test:mysql": "npm i -D loopback-connector-mysql && env DATASOURCE=mysql npm test",
+    "test:mysql": "npm i -D loopback-connector-mysql@6.2.0 && env DATASOURCE=mysql npm test",
     "test:postgresql": "npm i -D loopback-connector-postgresql && env DATASOURCE=postgresql npm test",
     "prepublishOnly": "npm test",
     "verify": "npm run build && npm pack && lb-clean loopback4-migration*.tgz",
